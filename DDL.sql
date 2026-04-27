@@ -4,7 +4,7 @@
  * Assignment: Project Step 2 Draft
  * Description: Data Definition Queries and Sample Data
 
- The following queries are our own work (edit if needed).
+ The following queries are all our own work.
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -53,15 +53,16 @@ CREATE TABLE Teams(
 );
 
 -- HS: create PlayerRecords table
+-- RW: removed NOT NULL from `player_id` and added ON DELETE
 
 DROP TABLE IF EXISTS PlayerRecords;
 CREATE TABLE PlayerRecords(
     `player_record_id` INT(11) AUTO_INCREMENT PRIMARY KEY,
     `team_id` INT(11) NOT NULL,
-    `player_id` INT(11) NOT NULL,
+    `player_id` INT(11),
     `lp_change` INT(11) NOT NULL,
     FOREIGN KEY (`team_id`) REFERENCES Teams(`team_id`),
-    FOREIGN KEY (`player_id`) REFERENCES Players(`player_id`)
+    FOREIGN KEY (`player_id`) REFERENCES Players(`player_id`) ON DELETE SET NULL
 );
 
 /* INSERT DATA */
@@ -137,3 +138,4 @@ VALUES
 
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
+
