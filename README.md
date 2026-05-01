@@ -1,2 +1,15 @@
-# lol_player_ranking_records_system
-CS 340 S2026 Group 40 Project
+# League of Legends - Player Ranking Records System
+
+Team Members: Hunter Shipman, Rebecca Wang
+Group: 40
+
+
+(May 2026) All backend and frontend code is based on the starter code provided by:
+Course Canvas Page under Module 6
+INTRODUCTION TO DATABASES (CS_340_400_S2026)
+    > Pages
+    > Exploration - Web Application Technology 
+    > under Web App Design UI section
+    > in React tab [Starter code]
+https://canvas.oregonstate.edu/courses/2042369/pages/exploration-web-application-technology-2?module_item_id=26640188
+
