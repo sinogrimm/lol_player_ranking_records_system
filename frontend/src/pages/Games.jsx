@@ -9,6 +9,12 @@ function Games() {
         <>
 
         <h1>Games</h1>
+        <p>Displays table of information for each recorded game.</p>
+        <ul>
+            <li>Add New: takes the user to the CreateGame page.</li>
+            <li>View: takes the user to the ViewGame page.</li>
+        </ul>
+        
         <button onClick={() => navigate("/creategame")}>Add New</button>
 
         {/* mock table */}

@@ -12,9 +12,12 @@ function Home() {
                 <ul>
                     <li>Home: Navigation</li>
                     <li>Players: Navigation</li>
+                    <li>ViewPlayer: Navigation - Players - View</li>
+                    <li>UpdatePlayer: Navigation - Players - Edit</li>
                     <li>Games: Navigation</li>
                     <li>CreateGame: Navigation - Games - Add New</li>
                     <li>ViewGame: Navigation - Games - View</li>
+                    <li>Ranks: Navigation</li>
                 </ul>
                 
             </div>

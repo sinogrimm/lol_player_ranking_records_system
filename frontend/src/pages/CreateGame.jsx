@@ -4,20 +4,31 @@ import { useNavigate } from 'react-router-dom';
 
 
 function CreateGame() {
+
     const navigate = useNavigate();
+    
+    const confirmCreate = () => {
+        event.preventDefault();
+        const confirmed = window.confirm("Create game ID?");
+        if (confirmed) {
+            alert("Created game ID");
+            navigate("/games");
+        }
+    }
 
     return (
         <>
-        <p>Enter information required to create a game and create the two teams for the game
-            using existing player names and a dropdown menu for results.</p>
-        <p>The submit button will validate the inputs before sending them in a request.
-            Once the game and two teams are successfully created, the user will be navigated back
-            to the Games page.
-        </p>
-        <p>The cancel button will simply return the user to the Games page.</p>
-        <form>
-            <h2>Create New Game</h2>
+        <h2>Create New Game</h2>
+        <p>Enter information required to create a game and create the two teams for the game.</p>
+        <ul>
+            <li>Submit: validates the inputs before sending them in a request.
+                Once the game and two teams are successfully created, the user will be navigated back
+                to the Games page.
+            </li>
+            <li>Cancel: returns the user to the Games page.</li>
+        </ul>
 
+        <form>
             <label>Start Time: </label>
             <input
                 type="text"
@@ -72,7 +83,7 @@ function CreateGame() {
 
             <br />
         </form>
-        <button onClick={() => navigate("/games")}>Submit</button>
+        <button onClick={confirmCreate}>Submit</button>
         <button onClick={() => navigate("/games")}>Cancel</button>
 
         </>

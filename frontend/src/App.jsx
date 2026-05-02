@@ -8,6 +8,8 @@ import Games from './pages/Games';
 import CreateGame from './pages/CreateGame';
 import ViewGame from './pages/ViewGame';
 import Ranks from './pages/Ranks';
+import UpdatePlayer from './pages/UpdatePlayer';
+import ViewPlayer from './pages/ViewPlayer';
 
 // Components
 import Navigation from './components/Navigation';
@@ -28,6 +30,8 @@ function App() {
                 <Route path="/creategame" element={<CreateGame />} />
                 <Route path="/viewgame" element={<ViewGame />} />
                 <Route path="/ranks" element={<Ranks />} />
+                <Route path="/updateplayer" element={<UpdatePlayer />} />
+                <Route path="/viewplayer" element={<ViewPlayer />} />
             </Routes>
         </>
     );

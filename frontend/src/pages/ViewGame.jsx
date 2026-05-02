@@ -11,7 +11,9 @@ function ViewGame() {
         <p>Allows the user to view the teams associated with the selected game
             and the players in each team.
         </p>
-        <p>Clicking the back button will take the user back to the Games page.</p>
+        <ul>
+            <li>Back: returns the user to the Games page.</li>
+        </ul>
 
         <h2>Team ID: RESULT</h2>
 
