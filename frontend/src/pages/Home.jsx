@@ -1,9 +1,22 @@
+
+
 function Home() {
     return (
         <>
-            <h1>Home page</h1>
+            <h1>HOME</h1>
             <div className="homepageDescription">
-                <p>Developer information and Project overview here.</p>
+                <h2>Developer Information</h2>
+                <p>Team Members: Hunter Shipman, Rebecca Wang</p>
+                <p>Group: 40</p>
+                <h2>Index</h2>
+                <ul>
+                    <li>Home: Navigation</li>
+                    <li>Players: Navigation</li>
+                    <li>Games: Navigation</li>
+                    <li>CreateGame: Navigation - Games - Add New</li>
+                    <li>ViewGame: Navigation - Games - View</li>
+                </ul>
+                
             </div>
         </>
     )

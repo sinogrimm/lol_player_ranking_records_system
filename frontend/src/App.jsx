@@ -3,6 +3,11 @@ import { Routes, Route } from 'react-router-dom';
 
 // Pages
 import Home from './pages/Home';
+import Players from './pages/Players';
+import Games from './pages/Games';
+import CreateGame from './pages/CreateGame';
+import ViewGame from './pages/ViewGame';
+import Ranks from './pages/Ranks';
 
 // Components
 import Navigation from './components/Navigation';
@@ -18,6 +23,11 @@ function App() {
             <Navigation />
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/players" element={<Players />} />
+                <Route path="/games" element={<Games />} />
+                <Route path="/creategame" element={<CreateGame />} />
+                <Route path="/viewgame" element={<ViewGame />} />
+                <Route path="/ranks" element={<Ranks />} />
             </Routes>
         </>
     );
