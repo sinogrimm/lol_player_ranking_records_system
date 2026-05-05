@@ -23,6 +23,7 @@ CREATE TABLE Ranks (
 );
 
 -- HS: create Players table
+-- RW: added ON DELETE to `rank_id`
 
 DROP TABLE IF EXISTS Players;
 CREATE TABLE Players(
@@ -30,7 +31,7 @@ CREATE TABLE Players(
     `name` VARCHAR(255) UNIQUE NOT NULL,
     `rank_id` INT(11) NOT NULL,
     `lp` INT(11) NOT NULL,
-    FOREIGN KEY (`rank_id`) REFERENCES Ranks(`rank_id`)
+    FOREIGN KEY (`rank_id`) REFERENCES Ranks(`rank_id`) ON DELETE RESTRICT
 );
 
 -- HS: create Games table
@@ -43,17 +44,19 @@ CREATE TABLE Games(
 );
 
 -- HS: create Teams table
+-- RW: added ON DELETE to `game_id`
 
 DROP TABLE IF EXISTS Teams;
 CREATE TABLE Teams(
     `team_id` INT(11) AUTO_INCREMENT PRIMARY KEY,
     `game_id` INT(11) NOT NULL,
     `result` ENUM('VICTORY', 'DEFEAT') NOT NULL,
-    FOREIGN KEY (`game_id`) REFERENCES Games(`game_id`)
+    FOREIGN KEY (`game_id`) REFERENCES Games(`game_id`) ON DELETE RESTRICT
 );
 
 -- HS: create PlayerRecords table
 -- RW: removed NOT NULL from `player_id` and added ON DELETE
+-- RW: added ON DELETE to `team_id`
 
 DROP TABLE IF EXISTS PlayerRecords;
 CREATE TABLE PlayerRecords(
@@ -61,7 +64,7 @@ CREATE TABLE PlayerRecords(
     `team_id` INT(11) NOT NULL,
     `player_id` INT(11),
     `lp_change` INT(11) NOT NULL,
-    FOREIGN KEY (`team_id`) REFERENCES Teams(`team_id`),
+    FOREIGN KEY (`team_id`) REFERENCES Teams(`team_id`) ON DELETE RESTRICT,
     FOREIGN KEY (`player_id`) REFERENCES Players(`player_id`) ON DELETE SET NULL
 );
 
