@@ -53,12 +53,7 @@ function UpdateGame() {
             <label>Player 5: </label>
             <input type="text" placeholder="Player name"/><br />
 
-            <label>Result: </label>
-            <select>
-                <option>Current RESULT</option>
-                <option>VICTORY</option>
-                <option>DEFEAT</option>
-            </select>
+
 
             <h3>Team ID</h3>
 
@@ -73,13 +68,7 @@ function UpdateGame() {
             <label>Player 5: </label>
             <input type="text" placeholder="Player name"/><br />
             
-            <label>Result: </label>
-            <select>
-                <option>Current RESULT</option>
-                <option>VICTORY</option>
-                <option>DEFEAT</option>
-            </select><br />
-
+            <br />
             <br />
         </form>
         <button onClick={confirmUpdate}>Submit</button>

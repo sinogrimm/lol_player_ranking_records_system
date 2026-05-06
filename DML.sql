@@ -217,14 +217,20 @@ UPDATE Players SET Players.name = :name_input, Players.rank_id = :rank_id_from_d
 WHERE Players.player_id = :player_id_from_click
 ;
 
-/********
- * UPDATEs associated with UpdateGame page START
- ********/
+-- HS: update a players rank upon their lp being changed (if necessary)
+UPDATE Players
+SET Players.rank_id = (
+    SELECT Ranks.rank_id FROM Ranks 
+    WHERE Ranks.lp_threshold <= Players.lp 
+    ORDER BY Ranks.lp_threshold DESC 
+    LIMIT 1
+)
+WHERE Players.player_id = :player_id_from_func;
 
 -- RW: update comprehensive game information for UpdateGame page
 /*
-* There will be a procedure grouping the updates for the game, its two 
-* teams, and all its related player records, and players.
+* There will be a procedure grouping the updates for the game entries,
+* its related playerrecords entries, and its related players entries.
 */
 
 -- RW: update game information
@@ -233,40 +239,17 @@ SET Games.start_time = :start_time_input, Games.duration = :duration_input
 WHERE Games.game_id = :game_id_from_click
 ;
 
--- RW: update team result for team
-/*
-* Triggers an update to 10 playerrecords entries swapping the lp_change from
-* a positive value, to a negative value, or vis versa.
-*/
-UPDATE Teams
-SET Teams.result = :result_from_dropdown
-WHERE Teams.ID = :team_id_from_func
-;
-
--- HS: update playerrcord on teams.result update
-/*
-* Triggers an update to 10 player entries as a result of lp_change being
-* reported improperly
-*/
-UPDATE PlayerRecords
-SET PlayerRecords.lp_change = -PlayerRecords.lp_change
-WHERE PlayerRecords.team_id = :team_id_from_func
-;
-
--- HS: update player lp based on playerrecord.lp_change update
-/*
-* doubles the lp_change to account for improper reporting of lp_change (EX: 
-* need subtract the original increase, and then the decrease that should have
-* occured)
-*/
+-- HS: subtract lp_change from old player based on playerrecord.player_id change
 UPDATE Players
-JOIN PlayerRecords ON Players.player_id = PlayerRecords.player_id
-SET Players.lp = Players.lp + 2 * (PlayerRecords.lp_change)
-WHERE PlayerRecords.team_id = :team_id_from_func
+SET Players.lp = Players.lp - (
+    SELECT PlayerRecords.lp_change
+    FROM PlayerRecords
+    WHERE PlayerRecords.player_record_id = :record_id_from_func
+)
+WHERE Players.player_id = :old_player_id_from_func
 ;
 
-
--- RW: update player ID for player record
+-- RW: update player_id in playerrecord entry
 /* 
  * Changes the value of the `player_id` FK in the PlayerRecords intersection table.
  * The player name input box needs to somehow link to the appropriate `player_record_id`.
@@ -280,9 +263,14 @@ SET PlayerRecords.player_id = (
 WHERE PlayerRecords.player_record_id = :record_id_from_func
 ;
 
-/********
- * UPDATEs associated with UpdateGame page END
- ********/
+-- HS: add lp_change to new player based on playerrecord.player_id change
+UPDATE Players
+SET Players.lp = Players.lp + (
+    SELECT PlayerRecords.lp_change
+    FROM PlayerRecords
+    WHERE PlayerRecords.player_record_id = :record_id_from_func
+)
+WHERE Players.player_id = :new_player_id_from_func
 
 /*************************************************************************
  * DELETEs (DELETE)
