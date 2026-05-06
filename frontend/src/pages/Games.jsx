@@ -13,6 +13,7 @@ function Games() {
         <ul>
             <li>Add New: takes the user to the CreateGame page.</li>
             <li>View: takes the user to the ViewGame page.</li>
+            <li>Edit: takes the user to the UpdateGame page.</li>
         </ul>
         
         <button onClick={() => navigate("/creategame")}>Add New</button>
