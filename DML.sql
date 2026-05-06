@@ -217,11 +217,14 @@ UPDATE Players SET Players.name = :name_input, Players.rank_id = :rank_id_from_d
 WHERE Players.player_id = :player_id_from_click
 ;
 
+/********
+ * UPDATEs associated with UpdateGame page START
+ ********/
 
 -- RW: update comprehensive game information for UpdateGame page
 /*
 * There will be a procedure grouping the updates for the game, its two 
-* teams, and all its related player records.
+* teams, and all its related player records, and players.
 */
 
 -- RW: update game information
@@ -231,10 +234,37 @@ WHERE Games.game_id = :game_id_from_click
 ;
 
 -- RW: update team result for team
+/*
+* Triggers an update to 10 playerrecords entries swapping the lp_change from
+* a positive value, to a negative value, or vis versa.
+*/
 UPDATE Teams
 SET Teams.result = :result_from_dropdown
 WHERE Teams.ID = :team_id_from_func
 ;
+
+-- HS: update playerrcord on teams.result update
+/*
+* Triggers an update to 10 player entries as a result of lp_change being
+* reported improperly
+*/
+UPDATE PlayerRecords
+SET PlayerRecords.lp_change = -PlayerRecords.lp_change
+WHERE PlayerRecords.team_id = :team_id_from_func
+;
+
+-- HS: update player lp based on playerrecord.lp_change update
+/*
+* doubles the lp_change to account for improper reporting of lp_change (EX: 
+* need subtract the original increase, and then the decrease that should have
+* occured)
+*/
+UPDATE Players
+JOIN PlayerRecords ON Players.player_id = PlayerRecords.player_id
+SET Players.lp = Players.lp + 2 * (PlayerRecords.lp_change)
+WHERE PlayerRecords.team_id = :team_id_from_func
+;
+
 
 -- RW: update player ID for player record
 /* 
@@ -249,6 +279,10 @@ SET PlayerRecords.player_id = (
 )
 WHERE PlayerRecords.player_record_id = :record_id_from_func
 ;
+
+/********
+ * UPDATEs associated with UpdateGame page END
+ ********/
 
 /*************************************************************************
  * DELETEs (DELETE)
