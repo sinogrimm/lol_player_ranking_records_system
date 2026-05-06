@@ -11,8 +11,8 @@ function UpdateGame() {
         const confirmed = window.confirm("Update game ID?");
         if (confirmed) {
             alert("Updated game ID");
+            navigate("/games");
         }
-        navigate("/games");
     }
 
     return (
