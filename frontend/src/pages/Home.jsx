@@ -21,6 +21,8 @@ function Home() {
                     <li>Teams: Navigation</li>
                     <li>PlayerRecords: Navigation</li>
                     <li>Ranks: Navigation</li>
+                    
+                    
                 </ul>
                 
             </div>

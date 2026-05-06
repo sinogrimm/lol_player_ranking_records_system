@@ -8,8 +8,8 @@ function Navigation() {
             <Link to='/players'>Players</Link>
             <Link to='/games'>Games</Link>
             <Link to='/teams'>Teams</Link>
-            <Link to='/ranks'>Ranks</Link>
             <Link to='/playerrecords'>PlayerRecords</Link>
+            <Link to='/ranks'>Ranks</Link>
         </nav>
     )
 }

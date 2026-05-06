@@ -32,7 +32,7 @@ function CreateGame() {
             <label>Start Time: </label>
             <input
                 type="text"
-                placeholder="YYYY-MM-DD"
+                placeholder="YYYY-MM-DD HH:MM:SS"
             />
             <br />
             <label>Duration: </label>
@@ -41,18 +41,18 @@ function CreateGame() {
                 placeholder="HH:MM:SS"
             />
 
-            <h3>Team 1</h3>
+            <h3>Team A</h3>
 
             <label>Player 1: </label>
-            <input type="text" /><br />
+            <input type="text" placeholder="Enter name"/><br />
             <label>Player 2: </label>
-            <input type="text" /><br />
+            <input type="text" placeholder="Enter name"/><br />
             <label>Player 3: </label>
-            <input type="text" /><br />
+            <input type="text" placeholder="Enter name"/><br />
             <label>Player 4: </label>
-            <input type="text" /><br />
+            <input type="text" placeholder="Enter name"/><br />
             <label>Player 5: </label>
-            <input type="text" /><br />
+            <input type="text" placeholder="Enter name"/><br />
 
             <label>Result: </label>
             <select>
@@ -61,18 +61,18 @@ function CreateGame() {
                 <option>DEFEAT</option>
             </select>
 
-            <h3>Team 2</h3>
+            <h3>Team B</h3>
 
             <label>Player 1: </label>
-            <input type="text" /><br />
+            <input type="text" placeholder="Enter name"/><br />
             <label>Player 2: </label>
-            <input type="text" /><br />
+            <input type="text" placeholder="Enter name"/><br />
             <label>Player 3: </label>
-            <input type="text" /><br />
+            <input type="text" placeholder="Enter name"/><br />
             <label>Player 4: </label>
-            <input type="text" /><br />
+            <input type="text" placeholder="Enter name"/><br />
             <label>Player 5: </label>
-            <input type="text" /><br />
+            <input type="text" placeholder="Enter name"/><br />
             
             <label>Result: </label>
             <select>

@@ -25,6 +25,7 @@ function Games() {
                     <th>Start Time</th>
                     <th>Duration</th>
                     <th></th>
+                    <th></th>
                 </tr> 
             </thead>
             <tbody>
@@ -33,6 +34,7 @@ function Games() {
                     <td></td>
                     <td></td>
                     <td><button onClick={() => navigate("/viewgame")}>View</button></td>
+                    <td><button onClick={() => navigate("/updategame")}>Edit</button></td>
                 </tr>
             </tbody>
         </table>
