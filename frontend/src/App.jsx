@@ -16,6 +16,7 @@ import Ranks from './pages/Ranks';
 
 // Components
 import Navigation from './components/Navigation';
+import Footer from './components/Footer';
 
 // Define the backend port and URL for API requests
 const backendPort = 1787;  // Use the port you assigned to the backend server, this would normally go in a .env file
@@ -28,7 +29,7 @@ function App() {
             <Navigation />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/players" element={<Players />} />
+                <Route path="/players" element={<Players backendURL={backendURL} />} />
                 <Route path="/viewplayer" element={<ViewPlayer />} />
                 <Route path="/updateplayer" element={<UpdatePlayer />} />
                 <Route path="/games" element={<Games />} />
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/playerrecords" element={<PlayerRecords />} />
                 <Route path="/ranks" element={<Ranks />} />
             </Routes>
+            <Footer />
         </>
     );
 
