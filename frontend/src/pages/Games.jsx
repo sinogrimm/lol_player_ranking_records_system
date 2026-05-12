@@ -9,14 +9,17 @@ function Games() {
         <>
 
         <h1>Games</h1>
-        <p>Displays table of information for each recorded game.</p>
+        <p>Displays a table showing the ID, Start Time, and Duration for each recorded game.
+            Allows the addition of a new game via clicking the "Add NewGame" button,
+            which routes to the CreateGame page.
+        </p>
         <ul>
             <li>Add New: takes the user to the CreateGame page.</li>
             <li>View: takes the user to the ViewGame page.</li>
             <li>Edit: takes the user to the UpdateGame page.</li>
         </ul>
         
-        <button onClick={() => navigate("/creategame")}>Add New</button>
+        <button onClick={() => navigate("/creategame")}>Add New Game</button>
 
         {/* mock table */}
         <table>

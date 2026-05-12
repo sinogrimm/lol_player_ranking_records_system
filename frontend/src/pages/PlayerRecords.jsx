@@ -4,9 +4,11 @@ function PlayerRecords() {
 
     return (
         <>
-            <h1>PlayerRecords</h1>
+            <h1>Player Records</h1>
             <p>Displays the Player Record ID, Team ID, Player Name, and League
-                Point Change (LP Change) for each Player Record.
+                Point Change (LP Change) for each Player Record. Cannot be
+                deleted as to retain a complete record of games and how they
+                affected each player.
             </p>
             <table>
                 <thead>

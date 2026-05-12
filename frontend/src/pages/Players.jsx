@@ -27,7 +27,8 @@ function Players() {
             <h1>Players</h1>
 
             <p>Includes a section for adding players, a search bar for finding players,
-                and a table showing the information for each player.
+                and a table showing each players ID, Player Name, Rank,
+                and amount of League Points (LP).
             </p>
             <ul>
                 <li>Add: Initiates confirmation popup. If 'OK', validates the submitted information
@@ -70,7 +71,7 @@ function Players() {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Player Name</th>
                         <th>Rank</th>
                         <th>LP</th>
                         <th></th>
