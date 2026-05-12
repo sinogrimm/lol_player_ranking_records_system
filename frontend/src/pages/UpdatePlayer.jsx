@@ -11,8 +11,8 @@ function UpdatePlayer() {
         const confirmed = window.confirm("Update player ID?");
         if (confirmed) {
             alert("Updated player ID");
+            navigate("/players");
         }
-        navigate("/players");
     }
 
     return (
