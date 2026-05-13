@@ -8,8 +8,9 @@ function ViewGame() {
     return (
         <>
         <h1>[game_id - start_time - duration]</h1>
-        <p>Allows the user to view the teams associated with the selected game
-            and the players in each team.
+        <p>Allows the user to view the Team ID and Results associated with the selected game.
+            For each team, displays the player Name, Rank, and league point (LP) change from 
+            their respective records.
         </p>
         <hr />
         <ul>

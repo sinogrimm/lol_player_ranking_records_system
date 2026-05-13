@@ -24,22 +24,25 @@ ORDER BY Players.player_id DESC
 
 -- RW: get all game information for Games page
 
-SELECT Games.game_id, Games.start_time, Games.duration
+SELECT Games.game_id AS "Game ID", Games.start_time AS "Start Time",
+    Games.duration AS "Duration"
 FROM Games
 ORDER BY Games.game_id DESC
 ;
 
 -- RW: get all team information for Teams page
 
-SELECT Teams.team_id, Teams.game_id, Teams.result
+SELECT Teams.team_id AS "Team ID", Teams.game_id AS "Game ID",
+    Teams.result AS "Result"
 FROM Teams
 ORDER BY Teams.team_id DESC
 ;
 
 -- RW: get all player record information for PlayerRecords page
 
-SELECT PlayerRecords.player_record_id, PlayerRecords.team_id,
-    Players.name, PlayerRecords.lp_change
+SELECT PlayerRecords.player_record_id AS "Player Record ID",
+    PlayerRecords.team_id AS "Team ID",
+    Players.name AS "Player Name", PlayerRecords.lp_change AS "LP Change"
 FROM PlayerRecords
     INNER JOIN Players
     ON PlayerRecords.player_id = Players.player_id
@@ -48,7 +51,7 @@ ORDER BY PlayerRecords.player_record_id DESC
 
 -- RW: get all rank information for the Ranks page
 
-SELECT Ranks.rank_id, Ranks.title, Ranks.lp_threshold
+SELECT Ranks.rank_id AS "Rank ID", Ranks.title AS "Title", Ranks.lp_threshold "Threshold"
 FROM Ranks
 ORDER BY Ranks.lp_threshold ASC
 ;

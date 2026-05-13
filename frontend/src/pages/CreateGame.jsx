@@ -37,6 +37,7 @@ function CreateGame({ backendURL }) {
         <>
         <h2>Create New Game</h2>
         <p>Enter information required to create a game and create the two teams for the game.</p>
+        <p>Note: All fields must be field. Requirement will be enforced through form and backend.</p>
         <hr />
         <ul>
             <li>Submit: validates the inputs before sending them in a request.

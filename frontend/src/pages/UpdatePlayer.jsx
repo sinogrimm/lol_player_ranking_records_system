@@ -58,7 +58,7 @@ function UpdatePlayer({ backendURL }) {
             <label>Rank: </label>
             <RankDropdown ranks={ranks}/>
 
-            <label>LP: </label>
+            <label>League Points: </label>
             <input
                 type="number"
                 placeholder="Current LP"
