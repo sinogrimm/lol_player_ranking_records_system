@@ -1,10 +1,26 @@
-import Navigation from '../components/Navigation';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PlayerDropdown from '../components/PlayerDropdown';
 
-function UpdateGame() {
-
+function UpdateGame({ backendURL }) {
     const navigate = useNavigate();
+    const [players, setPlayers] = useState([]);
+
+    const getPlayersForDropdown = async function () {
+        try {
+            const response = await fetch(backendURL + '/player-dropdown');
+            const {players} = await response.json();
+
+            setPlayers(players);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getPlayersForDropdown();
+    }, []);
 
     const confirmUpdate = () => {
         event.preventDefault();
@@ -41,47 +57,47 @@ function UpdateGame() {
                 type="text"
                 placeholder="Current Duration"
             />
-        <hr />
+
+        <br />
 
             <h3>Team ID</h3>
 
             <label>Player 1: </label>
-            <input type="text" placeholder="Player name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 2: </label>
-            <input type="text" placeholder="Player name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 3: </label>
-            <input type="text" placeholder="Player name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 4: </label>
-            <input type="text" placeholder="Player name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 5: </label>
-            <input type="text" placeholder="Player name"/><br />
-        <hr />
+            <PlayerDropdown players={players}/><br />
 
-
+        <br />
 
             <h3>Team ID</h3>
 
             <label>Player 1: </label>
-            <input type="text" placeholder="Player name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 2: </label>
-            <input type="text" placeholder="Player name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 3: </label>
-            <input type="text" placeholder="Player name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 4: </label>
-            <input type="text" placeholder="Player name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 5: </label>
-            <input type="text" placeholder="Player name"/><br />
-            
-            <br />
-            <br />
-        <hr />
+            <PlayerDropdown players={players}/><br />
+
         </form>
-        <button onClick={confirmUpdate}>Submit</button>
-        <button onClick={() => navigate("/games")}>Cancel</button>
+
+        <hr />
+
+        <button id="submit" onClick={confirmUpdate}>Update</button>
+        <button id="cancel" onClick={() => navigate("/games")}>Cancel</button>
 
         </>
     )
-    
+
 }
 
 export default UpdateGame;

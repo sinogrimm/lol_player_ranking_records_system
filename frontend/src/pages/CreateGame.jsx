@@ -1,4 +1,3 @@
-import Navigation from '../components/Navigation';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PlayerDropdown from '../components/PlayerDropdown';
@@ -77,9 +76,9 @@ function CreateGame({ backendURL }) {
 
             <label>Result: </label>
             <select>
-                <option value=""></option>
-                <option>VICTORY</option>
-                <option>DEFEAT</option>
+                <option value="">Select Result</option>
+                <option value="VICTORY">VICTORY</option>
+                <option value="DEFEAT">DEFEAT</option>
             </select>
         <hr />
 
@@ -98,16 +97,16 @@ function CreateGame({ backendURL }) {
             
             <label>Result: </label>
             <select>
-                <option value=""></option>
-                <option>VICTORY</option>
-                <option>DEFEAT</option>
+                <option value="">Select Result</option>
+                <option value="VICTORY">VICTORY</option>
+                <option value="DEFEAT">DEFEAT</option>
             </select><br />
 
             <br />
         </form>
         <hr />
-        <button onClick={confirmCreate}>Submit</button>
-        <button onClick={() => navigate("/games")}>Cancel</button>
+        <button id="submit" onClick={confirmCreate}>Submit</button>
+        <button id="cancel" onClick={() => navigate("/games")}>Cancel</button>
 
         </>
     )

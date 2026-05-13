@@ -10,7 +10,9 @@ function ViewPlayer() {
         <>
         <h1>[player_id - name - rank] </h1>
 
-        <p>Displays the selected player's game history.</p>
+        <p>Displays the selected player's game history by listing the Game ID, game Start Time,
+            team Result, and player record League Point (LP) Change.
+        </p>
         <hr />
         <ul>
             <li>Back: returns the user to the Players page.</li>
@@ -38,7 +40,7 @@ function ViewPlayer() {
             </tbody>
         </table>
 
-        <button onClick={() => navigate("/players")}>Back</button>
+        <button id="back" onClick={() => navigate("/players")}>Back</button>
         </>
     )
 }

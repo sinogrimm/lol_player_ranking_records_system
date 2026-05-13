@@ -1,10 +1,24 @@
-import Navigation from '../components/Navigation';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import RankDropdown from '../components/RankDropdown';
 
-function UpdatePlayer() {
-
+function UpdatePlayer({ backendURL }) {
     const navigate = useNavigate();
+    const [ranks, setRanks] = useState([]);
+
+    const getRanksForDropdown = async function () {
+        try {
+            // GET request for rank data
+            const response = await fetch(backendURL + '/rank-dropdown');
+            // convert response to JSON and destructure into array
+            const {ranks} = await response.json();
+
+            setRanks(ranks);    // update state with data
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const confirmUpdate = () => {
         event.preventDefault();
@@ -14,6 +28,10 @@ function UpdatePlayer() {
             navigate("/players");
         }
     }
+
+    useEffect(() => {
+        getRanksForDropdown();
+    }, []);
 
     return (
         <>
@@ -36,10 +54,10 @@ function UpdatePlayer() {
                 type="text"
                 placeholder="Player Name"
             />
+
             <label>Rank: </label>
-            <select>
-                <option>Select Rank</option>
-            </select>
+            <RankDropdown ranks={ranks}/>
+
             <label>LP: </label>
             <input
                 type="number"
@@ -48,7 +66,7 @@ function UpdatePlayer() {
             <button onClick={confirmUpdate}>Update</button>
         </form>
         
-        <button onClick={() => navigate("/players")}>Cancel</button>
+        <button id="cancel" onClick={() => navigate("/players")}>Cancel</button>
         </>
     )
     

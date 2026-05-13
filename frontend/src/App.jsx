@@ -30,14 +30,14 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/players" element={<Players backendURL={backendURL} />} />
-                <Route path="/viewplayer" element={<ViewPlayer />} />
-                <Route path="/updateplayer" element={<UpdatePlayer />} />
-                <Route path="/games" element={<Games />} />
+                <Route path="/viewplayer" element={<ViewPlayer backendURL={backendURL}/>} />
+                <Route path="/updateplayer" element={<UpdatePlayer backendURL={backendURL}/>} />
+                <Route path="/games" element={<Games backendURL={backendURL} />} />
                 <Route path="/creategame" element={<CreateGame backendURL={backendURL} />} />
-                <Route path="/viewgame" element={<ViewGame />} />
-                <Route path="/updategame" element={<UpdateGame />} />
-                <Route path="/teams" element={<Teams />} />
-                <Route path="/playerrecords" element={<PlayerRecords />} />
+                <Route path="/viewgame" element={<ViewGame backendURL={backendURL}/>} />
+                <Route path="/updategame" element={<UpdateGame backendURL={backendURL} />} />
+                <Route path="/teams" element={<Teams backendURL={backendURL}/>} />
+                <Route path="/playerrecords" element={<PlayerRecords backendURL={backendURL}/>} />
                 <Route path="/ranks" element={<Ranks backendURL={backendURL}/>} />
             </Routes>
             <Footer />

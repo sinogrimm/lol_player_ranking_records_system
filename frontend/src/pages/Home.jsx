@@ -16,7 +16,7 @@ function Home() {
                     <li>ViewPlayer: Navigation - Players - View</li>
                     <li>UpdatePlayer: Navigation - Players - Edit</li>
                     <li>Games: Navigation</li>
-                    <li>CreateGame: Navigation - Games - Add New</li>
+                    <li>CreateGame: Navigation - Games - Add New Game</li>
                     <li>ViewGame: Navigation - Games - View</li>
                     <li>UpdateGame: Navigation - Games - Edit</li>
                     <li>Teams: Navigation</li>

@@ -31,17 +31,30 @@ app.get('/players', async (req, res) => {
                 ON Players.rank_id = Ranks.rank_id
             ORDER BY Players.player_id DESC
             ;`;
+
+        const [players] = await db.query(players_query);
+    
+        res.status(200).json({ players });  // send results to frontend
+
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+
+});
+
+app.get('/rank-dropdown', async (req, res) => {
+    try {
         // get rank id and title for dropdown
-        const ranks_query = `
+        const rank_util_query = `
             SELECT Ranks.rank_id, Ranks.title
             FROM Ranks
             ORDER BY Ranks.lp_threshold ASC
             ;`;
 
-        const [players] = await db.query(players_query);
-        const [ranks] = await db.query(ranks_query);
+        const [ranks] = await db.query(rank_util_query);
     
-        res.status(200).json({ players, ranks });  // send results to frontend
+        res.status(200).json({ ranks });  // send results to frontend
 
     } catch (error) {
         console.error("Error executing queries:", error);
@@ -68,6 +81,72 @@ app.get('/player-dropdown', async (req, res) => {
         res.status(500).send("An error occurred while executing the database queries.");
     }
     
+});
+
+app.get('/games', async (req, res) => {
+    try {
+        // get all game information for table
+        const games_query = `
+            SELECT Games.game_id AS "Game ID", Games.start_time AS "Start Time",
+                Games.duration AS "Duration"
+            FROM Games
+            ORDER BY Games.game_id DESC
+            ;`;
+
+        const [games] = await db.query(games_query);
+    
+        res.status(200).json({ games });  // send results to frontend
+
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+    
+});
+
+app.get('/teams', async (req, res) => {
+    try {
+        // get all team information for table
+        const teams_query = `
+            SELECT Teams.team_id AS "Team ID", Teams.game_id AS "Game ID",
+                Teams.result AS "Result"
+            FROM Teams
+            ORDER BY Teams.team_id DESC
+            ;`;
+
+        const [teams] = await db.query(teams_query);
+    
+        res.status(200).json({ teams });  // send results to frontend
+
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+
+});
+
+app.get('/player-records', async (req, res) => {
+    try {
+        // get all player records information for table
+        const records_query = `
+            SELECT PlayerRecords.player_record_id AS "Player Record ID",
+                PlayerRecords.team_id AS "Team ID",
+                Players.name AS "Player Name", PlayerRecords.lp_change AS "LP Change"
+            FROM PlayerRecords
+                INNER JOIN Players
+                ON PlayerRecords.player_id = Players.player_id
+            ORDER BY PlayerRecords.player_record_id DESC
+            ;`;
+
+        const [records] = await db.query(records_query);
+    
+        res.status(200).json({ records });  // send results to frontend
+
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+
 });
 
 app.get('/ranks', async (req, res) => {

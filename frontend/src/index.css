@@ -33,7 +33,7 @@ nav {background-color: #cecece;padding: 16px;}
 a {margin-left: 16px;}
 .homepageDescription {margin-left: 32px;}
 
-#new_game_button {
+#submit, #cancel, #back {
     margin-left: 32px;
     margin-bottom: 16px;
 }

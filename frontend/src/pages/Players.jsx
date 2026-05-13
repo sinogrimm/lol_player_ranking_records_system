@@ -1,22 +1,35 @@
-import Navigation from '../components/Navigation';
 import { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import TableRow from '../components/TableRow';
+import RankDropdown from '../components/RankDropdown';
+import PlayersTableRow from '../components/PlayersTableRow';
 
 
 function Players({ backendURL }) {
-    const [players, setPlayers] = useState([]);
     const [ranks, setRanks] = useState([]);
+    const [players, setPlayers] = useState([]);
+    
+    const getRanksForDropdown = async function() {
+        try {
+            // GET request for rank data
+            const response = await fetch(backendURL + '/rank-dropdown');
+            // convert response to JSON and destructure into array
+            const {ranks} = await response.json();
+
+            setRanks(ranks); // update state with data
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const getPlayers = async function () {
         try {
-            // GET request
+            // GET request for all player data
             const response = await fetch(backendURL + '/players');
-            // convert response to JSON
-            const {players, ranks} = await response.json();
-            // update states
-            setPlayers(players);
-            setRanks(ranks);
+            // convert response to JSON and destructure into array
+            const {players} = await response.json();
+
+            setPlayers(players); // update state with data
 
         } catch (error) {
             console.log(error);
@@ -24,7 +37,8 @@ function Players({ backendURL }) {
     }
 
     useEffect(() => {
-        getPlayers();
+        getRanksForDropdown();
+        getPlayers();  
     }, []);
 
     const notifyCreate = () => {
@@ -40,7 +54,7 @@ function Players({ backendURL }) {
             <h1>Players</h1>
 
             <p>Includes a section for adding players and a table showing each 
-                players ID, Player Name, Rank, and amount of League Points (LP).
+                Player ID, Name, Rank, and amount of League Points (LP).
             </p>
             <hr />
             <ul>
@@ -62,12 +76,7 @@ function Players({ backendURL }) {
                 <input type="text"/>
 
                 <label>Rank: </label>
-                <select>
-                    <option value="">Select Rank</option>
-                    {ranks.map((rank, index) => (
-                        <option value={rank.id} key={index}>{rank.title}</option>
-                    ))}
-                </select>
+                <RankDropdown ranks={ranks} />
 
                 <label>League Points: </label>
                 <input type="number"/>
@@ -91,7 +100,7 @@ function Players({ backendURL }) {
                 </thead>
                 <tbody>
                     {players.map((player, index) => (
-                        <TableRow key={index} rowObject={player}/>
+                        <PlayersTableRow key={index} rowObject={player}/>
                     ))}
                 </tbody>
             </table>

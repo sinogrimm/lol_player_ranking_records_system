@@ -1,32 +1,48 @@
+import { useState, useEffect } from 'react';
+import TableRow from "../components/TableRow";
 
+function PlayerRecords({ backendURL }) {
+    const [records, setRecords] = useState([]);
 
-function PlayerRecords() {
+    const getRecords = async function() {
+        try {
+            // GET request for player records data
+            const response = await fetch(backendURL + '/player-records');
+            // convert response to JSON and destructure into array
+            const {records} = await response.json();
 
+            setRecords(records); // update state with data
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getRecords();  
+    }, []);
+    
     return (
         <>
             <h1>Player Records</h1>
-            <p>Displays the Player Record ID, Team ID, Player Name, and League
-                Point Change (LP Change) for each Player Record. Cannot be
-                deleted as to retain a complete record of games and how they
-                affected each player.
-            </p>
+            <p>Displays the Player Record ID, Team ID, Player Name, and league
+                point (LP) Change for each Player Record. </p>
+            <p>Note: This is a static lookup page. New player records are automatically added through 
+                the CreateGames page and can be edited through the UpdateGames page. Cannot be deleted
+                as to retain a complete record of games and how they affected each player.</p>
             <hr />
             <table>
                 <thead>
                     <tr>
-                        <th>Player Record ID</th>
-                        <th>Team ID</th>
-                        <th>Player Name</th>
-                        <th>LP Change</th>
+                        {records.length > 0 && Object.keys(records[0]).map((header, index) => (
+                            <th key={index}>{header}</th>
+                        ))}
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
+                    {records.map((record, index) => (
+                        <TableRow key={index} object={record}/>
+                    ))}
                 </tbody>
             </table>
         </>        

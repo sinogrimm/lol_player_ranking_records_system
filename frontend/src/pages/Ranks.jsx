@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import R_Row from '../components/R_Row';
+import TableRow from '../components/TableRow';
 
 function Ranks({ backendURL }) {
     const [ranks, setRanks] = useState([]);
@@ -25,7 +25,7 @@ function Ranks({ backendURL }) {
     return (
         <>
             <h1>Ranks</h1>
-            <p>Displays the identification number, title, and lower league point threshold for
+            <p>Displays the Rank ID, Title, and lower league point Threshold for
                 each available rank.</p>
             <p>Note: This is a static lookup page. New ranks cannot be added, current ranks cannot be
                 updated, and current ranks cannot be deleted. The scope of our project is limited to
@@ -41,7 +41,7 @@ function Ranks({ backendURL }) {
                 </thead>
                 <tbody>
                     {ranks.map((rank, index) => (
-                        <R_Row key={index} object={rank}/>
+                        <TableRow key={index} object={rank}/>
                     ))}
                 </tbody>
             </table>

@@ -22,9 +22,9 @@ function ViewGame() {
         <table>
             <thead>
                 <tr>
-                    <th>name</th>
-                    <th>rank</th>
-                <   th>lp_change</th>
+                    <th>Name</th>
+                    <th>Rank</th>
+                <   th>LP Change</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,9 +62,9 @@ function ViewGame() {
         <table>
             <thead>
                 <tr>
-                    <th>name</th>
-                    <th>rank</th>
-                <   th>lp_change</th>
+                    <th>Name</th>
+                    <th>Rank</th>
+                <   th>LP Change</th>
                 </tr>
             </thead>
             <tbody>
