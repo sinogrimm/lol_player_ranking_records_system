@@ -30,6 +30,7 @@ function Ranks({ backendURL }) {
             <p>Note: This is a static lookup page. New ranks cannot be added, current ranks cannot be
                 updated, and current ranks cannot be deleted. The scope of our project is limited to
                 these ten ranks.</p>
+            <hr />
             <table>
                 <thead>
                     <tr>
