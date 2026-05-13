@@ -85,7 +85,6 @@ function Players({ backendURL }) {
             />
             <button>Search</button>        
 
-            {/* mock table */}
             <table>
                 <thead>
                     <tr>

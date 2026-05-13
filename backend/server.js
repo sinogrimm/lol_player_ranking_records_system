@@ -70,6 +70,26 @@ app.get('/player-dropdown', async (req, res) => {
     
 });
 
+app.get('/ranks', async (req, res) => {
+    try {
+        // get all rank information for table
+        const ranks_query = `
+            SELECT Ranks.rank_id AS "Rank ID", Ranks.title AS "Title", Ranks.lp_threshold "Threshold"
+            FROM Ranks
+            ORDER BY Ranks.lp_threshold ASC
+            ;`;
+
+        const [ranks] = await db.query(ranks_query);
+    
+        res.status(200).json({ ranks });  // send results to frontend
+
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+    
+});
+
 // ########################################
 // ########## LISTENER
 
