@@ -33,12 +33,12 @@ function App() {
                 <Route path="/viewplayer" element={<ViewPlayer />} />
                 <Route path="/updateplayer" element={<UpdatePlayer />} />
                 <Route path="/games" element={<Games />} />
-                <Route path="/creategame" element={<CreateGame />} />
+                <Route path="/creategame" element={<CreateGame backendURL={backendURL} />} />
                 <Route path="/viewgame" element={<ViewGame />} />
                 <Route path="/updategame" element={<UpdateGame />} />
                 <Route path="/teams" element={<Teams />} />
                 <Route path="/playerrecords" element={<PlayerRecords />} />
-                <Route path="/ranks" element={<Ranks />} />
+                <Route path="/ranks" element={<Ranks backendURL={backendURL}/>} />
             </Routes>
             <Footer />
         </>

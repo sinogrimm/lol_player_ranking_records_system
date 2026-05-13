@@ -22,28 +22,49 @@ const PORT = 1787;
 // READ ROUTES
 app.get('/players', async (req, res) => {
     try {
-        // Create and execute our queries
-        // In query1, we use a JOIN clause to display the names of the homeworlds
-        const query = `
+        // get all player information for table
+        const players_query = `
             SELECT Players.player_id AS "Player ID", Players.name AS "Name",
-            Ranks.title AS "Rank", Players.lp AS "League Points"
+                Ranks.title AS "Rank", Players.lp AS "League Points"
             FROM Players
                 INNER JOIN Ranks
                 ON Players.rank_id = Ranks.rank_id
             ORDER BY Players.player_id DESC
             ;`;
-        //const query1 = `SELECT bsg_people.id, bsg_people.fname, bsg_people.lname, \
-            //bsg_planets.name AS 'homeworld', bsg_people.age FROM bsg_people \
-            //LEFT JOIN bsg_planets ON bsg_people.homeworld = bsg_planets.id;`;
-        const query2 = 'SELECT * FROM bsg_planets;';
-        const [players] = await db.query(query);
-        //const [homeworlds] = await db.query(query2);
+        // get rank id and title for dropdown
+        const ranks_query = `
+            SELECT Ranks.rank_id, Ranks.title
+            FROM Ranks
+            ORDER BY Ranks.lp_threshold ASC
+            ;`;
+
+        const [players] = await db.query(players_query);
+        const [ranks] = await db.query(ranks_query);
     
-        res.status(200).json({ players });  // Send the results to the frontend
+        res.status(200).json({ players, ranks });  // send results to frontend
 
     } catch (error) {
         console.error("Error executing queries:", error);
-        // Send a generic error message to the browser
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+    
+});
+
+app.get('/player-dropdown', async (req, res) => {
+    try {
+        // get player id and name for dropdown
+        const players_query = `
+            SELECT Players.player_id, Players.name
+            FROM Players
+            ORDER BY Players.name ASC
+            ;`;
+        
+        const [players] = await db.query(players_query);
+    
+        res.status(200).json({ players });  // send results to frontend
+
+    } catch (error) {
+        console.error("Error executing queries:", error);
         res.status(500).send("An error occurred while executing the database queries.");
     }
     

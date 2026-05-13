@@ -6,21 +6,26 @@ import TableRow from '../components/TableRow';
 
 function Players({ backendURL }) {
     const [players, setPlayers] = useState([]);
+    const [ranks, setRanks] = useState([]);
 
     const getPlayers = async function () {
         try {
             // GET request
             const response = await fetch(backendURL + '/players');
             // convert response to JSON
-            const {players} = await response.json();
-            // update state with data
+            const {players, ranks} = await response.json();
+            // update states
             setPlayers(players);
+            setRanks(ranks);
+
         } catch (error) {
             console.log(error);
         }
     }
 
-    useEffect(() => { getPlayers(); }, []);
+    useEffect(() => {
+        getPlayers();
+    }, []);
 
     const notifyCreate = () => {
         event.preventDefault();
@@ -55,12 +60,18 @@ function Players({ backendURL }) {
             <form>
                 <label>Name: </label>
                 <input type="text"/>
+
                 <label>Rank: </label>
                 <select>
-                    <option>Select Rank</option>
+                    <option value="">Select Rank</option>
+                    {ranks.map((rank, index) => (
+                        <option value={rank.id} key={index}>{rank.title}</option>
+                    ))}
                 </select>
-                <label>LP: </label>
-                <input type="text"/>
+
+                <label>League Points: </label>
+                <input type="number"/>
+
                 <button onClick={notifyCreate}>Add</button>
             </form>
             
@@ -70,7 +81,7 @@ function Players({ backendURL }) {
             <input
                 id="player_search_bar"
                 type="text"
-                placeholder="Enter a player name"
+                placeholder="Enter a player name..."
             />
             <button>Search</button>        
 

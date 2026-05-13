@@ -1,9 +1,27 @@
 import Navigation from '../components/Navigation';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PlayerDropdown from '../components/PlayerDropdown';
 
 
-function CreateGame() {
+function CreateGame({ backendURL }) {
+    const [players, setPlayers] = useState([]);
+
+    const getPlayersForDropdown = async function () {
+        try {
+            const response = await fetch(backendURL + '/player-dropdown');
+            const {players} = await response.json();
+
+            setPlayers(players);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getPlayersForDropdown();
+    }, []);
 
     const navigate = useNavigate();
     
@@ -44,15 +62,15 @@ function CreateGame() {
             <h3>Team A</h3>
 
             <label>Player 1: </label>
-            <input type="text" placeholder="Enter name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 2: </label>
-            <input type="text" placeholder="Enter name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 3: </label>
-            <input type="text" placeholder="Enter name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 4: </label>
-            <input type="text" placeholder="Enter name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 5: </label>
-            <input type="text" placeholder="Enter name"/><br />
+            <PlayerDropdown players={players}/><br />
 
             <label>Result: </label>
             <select>
@@ -64,15 +82,15 @@ function CreateGame() {
             <h3>Team B</h3>
 
             <label>Player 1: </label>
-            <input type="text" placeholder="Enter name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 2: </label>
-            <input type="text" placeholder="Enter name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 3: </label>
-            <input type="text" placeholder="Enter name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 4: </label>
-            <input type="text" placeholder="Enter name"/><br />
+            <PlayerDropdown players={players}/><br />
             <label>Player 5: </label>
-            <input type="text" placeholder="Enter name"/><br />
+            <PlayerDropdown players={players}/><br />
             
             <label>Result: </label>
             <select>

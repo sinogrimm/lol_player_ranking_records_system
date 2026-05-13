@@ -18,6 +18,6 @@ a {margin-left: 16px;}
     margin-bottom: 16px;
 }
 
-footer {
-    padding: 16px;
-}
+p { margin-left: 16px;}
+form { margin-left: 32px; }
+footer { padding: 16px; }
