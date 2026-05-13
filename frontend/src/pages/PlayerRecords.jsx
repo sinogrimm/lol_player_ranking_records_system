@@ -10,6 +10,7 @@ function PlayerRecords() {
                 deleted as to retain a complete record of games and how they
                 affected each player.
             </p>
+            <hr />
             <table>
                 <thead>
                     <tr>

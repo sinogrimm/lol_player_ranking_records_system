@@ -30,6 +30,7 @@ function Players() {
                 and a table showing each players ID, Player Name, Rank,
                 and amount of League Points (LP).
             </p>
+            <hr />
             <ul>
                 <li>Add: Initiates confirmation popup. If 'OK', validates the submitted information
                     before sending a request with the inputs to create a new player. Notifies the user
@@ -42,6 +43,7 @@ function Players() {
                 the associated player and a popup will notify the user whether the new player was
                 successfully deleted.</li>
             </ul>
+            <hr />
 
             <h2>Add New Player</h2>
 
@@ -56,6 +58,7 @@ function Players() {
                 <input type="text"/>
                 <button onClick={notifyCreate}>Add</button>
             </form>
+            <hr />
             
             <h2>List of Players</h2>
 

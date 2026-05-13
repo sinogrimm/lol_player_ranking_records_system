@@ -8,22 +8,24 @@ function ViewPlayer() {
 
     return (
         <>
-        <h1>player_id - name - rank </h1>
+        <h1>[player_id - name - rank] </h1>
 
         <p>Displays the selected player's game history.</p>
+        <hr />
         <ul>
             <li>Back: returns the user to the Players page.</li>
         </ul>
+        <hr />
 
         <h2>Game History</h2>
         
         <table>
             <thead>
                 <tr>
-                    <th>game_id</th>
-                    <th>start_time</th>
-                    <th>result</th>
-                    <th>lp_change</th>
+                    <th>Game ID</th>
+                    <th>Start Time</th>
+                    <th>Result</th>
+                    <th>LP Change</th>
                 </tr>
             </thead>
             <tbody>

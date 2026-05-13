@@ -20,12 +20,14 @@ function UpdateGame() {
         <h1>Update Game</h1>
         <p>Allows user to input and submit changes to the selected game, teams, and
             player records.</p>
+        <hr />
         <ul>
             <li>Update: initiates confirmation popup. If 'OK', validates the inputs before sending them in a request.
                 Once everything is successfully updated, the user will be navigated back to the Games page.
             </li>
             <li>Cancel: returns the user to the Games page.</li>
         </ul>
+        <hr />
 
         <form>
             <label>Start Time: </label>
@@ -39,6 +41,7 @@ function UpdateGame() {
                 type="text"
                 placeholder="Current Duration"
             />
+        <hr />
 
             <h3>Team ID</h3>
 
@@ -52,6 +55,7 @@ function UpdateGame() {
             <input type="text" placeholder="Player name"/><br />
             <label>Player 5: </label>
             <input type="text" placeholder="Player name"/><br />
+        <hr />
 
 
 
@@ -70,6 +74,7 @@ function UpdateGame() {
             
             <br />
             <br />
+        <hr />
         </form>
         <button onClick={confirmUpdate}>Submit</button>
         <button onClick={() => navigate("/games")}>Cancel</button>

@@ -8,6 +8,7 @@ function Ranks() {
             <p>Displays the id, title, and lower league point threshold for
                 each available rank.
             </p>
+            <hr />
             <table>
                 <thead>
                     <tr>

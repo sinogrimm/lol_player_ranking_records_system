@@ -20,6 +20,7 @@ function UpdatePlayer() {
 
         <h1>Update Player</h1>
         <p>Allows the user to input and submit changes to the selected player.</p>
+        <hr />
         <ul>
             <li>Update: initiates confirmation popup. If 'OK', validates information
                 before sending an update request. Notifies the user whether the player
@@ -27,6 +28,7 @@ function UpdatePlayer() {
             </li>
             <li>Cancel: returns the user back to the Players page.</li>
         </ul>
+        <hr />
 
         <form>
             <label>Name: </label>

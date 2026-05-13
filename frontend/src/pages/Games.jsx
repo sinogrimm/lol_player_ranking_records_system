@@ -13,11 +13,13 @@ function Games() {
             Allows the addition of a new game via clicking the "Add NewGame" button,
             which routes to the CreateGame page.
         </p>
+        <hr />
         <ul>
             <li>Add New: takes the user to the CreateGame page.</li>
             <li>View: takes the user to the ViewGame page.</li>
             <li>Edit: takes the user to the UpdateGame page.</li>
         </ul>
+        <hr />
         
         <button onClick={() => navigate("/creategame")}>Add New Game</button>
 
