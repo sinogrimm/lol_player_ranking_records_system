@@ -22,19 +22,6 @@ FROM Players
 ORDER BY Players.player_id DESC
 ;
 
--- RW: get filtered player information for Players page
-/*
- * The user enters a string in the search bar text box.
- * Displays player information for all players whose name partially matches the inputted string.
- */
-SELECT Players.player_id, Players.name, Ranks.title, Players.lp
-FROM Players
-    INNER JOIN Ranks
-        ON Players.rank_id = Ranks.rank_id
-WHERE Players.name LIKE :input_from_search_bar%
-ORDER BY Players.player_id DESC
-;
-
 -- RW: get all game information for Games page
 
 SELECT Games.game_id, Games.start_time, Games.duration

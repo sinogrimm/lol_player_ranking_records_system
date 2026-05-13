@@ -21,7 +21,7 @@ function Games() {
         </ul>
         <hr />
         
-        <button onClick={() => navigate("/creategame")}>Add New Game</button>
+        <button id="new_game_button" onClick={() => navigate("/creategame")}>Add New Game</button>
 
         {/* mock table */}
         <table>
