@@ -1,24 +1,37 @@
 import Navigation from '../components/Navigation';
 import { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
+import TableRow from '../components/TableRow';
 
 
-function Players() {
+function Players({ backendURL }) {
+    const [players, setPlayers] = useState([]);
+    const [ranks, setRanks] = useState([]);
 
-    const navigate = useNavigate();
+    const getPlayers = async function () {
+        try {
+            // GET request
+            const response = await fetch(backendURL + '/players');
+            // convert response to JSON
+            const {players, ranks} = await response.json();
+            // update states
+            setPlayers(players);
+            setRanks(ranks);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getPlayers();
+    }, []);
 
     const notifyCreate = () => {
         event.preventDefault();
         const confirmed = window.confirm("Create player ID?");
         if (confirmed) {
             alert("Created player ID");
-        }
-    }
-
-    const confirmDelete = () => {
-        const confirmed = window.confirm("Delete player ID?");
-        if (confirmed) {
-            alert("Deleted player ID");
         }
     }
 
@@ -47,12 +60,18 @@ function Players() {
             <form>
                 <label>Name: </label>
                 <input type="text"/>
+
                 <label>Rank: </label>
                 <select>
-                    <option>Select Rank</option>
+                    <option value="">Select Rank</option>
+                    {ranks.map((rank, index) => (
+                        <option value={rank.id} key={index}>{rank.title}</option>
+                    ))}
                 </select>
-                <label>LP: </label>
-                <input type="text"/>
+
+                <label>League Points: </label>
+                <input type="number"/>
+
                 <button onClick={notifyCreate}>Add</button>
             </form>
             
@@ -60,34 +79,27 @@ function Players() {
 
             {/* search bar */}
             <input
+                id="player_search_bar"
                 type="text"
-                placeholder="Enter a player name"
+                placeholder="Enter a player name..."
             />
             <button>Search</button>        
 
-            {/* mock table */}
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Rank</th>
-                        <th>LP</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr> 
+                        {players.length > 0 && Object.keys(players[0]).map((header, index) => (
+                            <th key={index}>{header}</th>
+                        ))}
+                        <th></th>{/* empty column for view*/}
+                        <th></th>{/* empty column for edit*/}
+                        <th></th>{/* empty column for delete*/}
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button onClick={() => navigate("/viewplayer")}>View</button></td>
-                        <td><button onClick={() => navigate("/updateplayer")}>Edit</button></td>
-                        <td><button onClick={confirmDelete}>Delete</button></td>
-                    </tr>
+                    {players.map((player, index) => (
+                        <TableRow key={index} rowObject={player}/>
+                    ))}
                 </tbody>
             </table>
         </>

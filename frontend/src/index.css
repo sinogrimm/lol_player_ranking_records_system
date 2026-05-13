@@ -12,3 +12,12 @@ input, select { margin-bottom: 4px;margin-right: 12px;}
 nav {background-color: #cecece;padding: 16px;}
 a {margin-left: 16px;}
 .homepageDescription {margin-left: 32px;}
+
+#player_search_bar {
+    margin-left: 32px;
+    margin-bottom: 16px;
+}
+
+p { margin-left: 16px;}
+form { margin-left: 32px; }
+footer { padding: 16px; }

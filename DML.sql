@@ -14,7 +14,8 @@
 
 -- RW: get all player information for Players page
 
-SELECT Players.player_id, Players.name, Ranks.title, Players.lp
+SELECT Players.player_id AS "Player ID", Players.name AS "Name",
+    Ranks.title AS "Rank", Players.lp AS "League Points"
 FROM Players
     INNER JOIN Ranks
         ON Players.rank_id = Ranks.rank_id
@@ -155,6 +156,14 @@ ORDER BY PlayerRecords.player_record_id ASC
 
 SELECT Ranks.rank_id, Ranks.title
 FROM Ranks
+ORDER BY Ranks.lp_threshold ASC
+;
+
+-- RW: get player ID and name to populate player dropdown
+
+SELECT Players.player_id, Players.name
+FROM Players
+ORDER BY Players.name ASC
 ;
 
 -- RW: get player record IDs for player records associated with team
