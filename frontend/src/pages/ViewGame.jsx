@@ -7,13 +7,15 @@ function ViewGame() {
 
     return (
         <>
-        <h1>game_id - start_time - duration</h1>
+        <h1>[game_id - start_time - duration]</h1>
         <p>Allows the user to view the teams associated with the selected game
             and the players in each team.
         </p>
+        <hr />
         <ul>
             <li>Back: returns the user to the Games page.</li>
         </ul>
+        <hr />
 
         <h2>Team ID: RESULT</h2>
 
@@ -53,6 +55,7 @@ function ViewGame() {
                 </tr>
             </tbody>
         </table>
+        <hr />
 
         <h2>Team ID: RESULT</h2>
 
@@ -92,6 +95,7 @@ function ViewGame() {
                 </tr>
             </tbody>
         </table>
+        <hr />
 
         <button onClick={() => navigate("/games")}>Back</button>
 

@@ -38,6 +38,7 @@ function CreateGame({ backendURL }) {
         <>
         <h2>Create New Game</h2>
         <p>Enter information required to create a game and create the two teams for the game.</p>
+        <hr />
         <ul>
             <li>Submit: validates the inputs before sending them in a request.
                 Once the game and two teams are successfully created, the user will be navigated back
@@ -45,6 +46,7 @@ function CreateGame({ backendURL }) {
             </li>
             <li>Cancel: returns the user to the Games page.</li>
         </ul>
+        <hr />
 
         <form>
             <label>Start Time: </label>
@@ -58,6 +60,7 @@ function CreateGame({ backendURL }) {
                 type="text"
                 placeholder="HH:MM:SS"
             />
+        <hr />
 
             <h3>Team A</h3>
 
@@ -78,6 +81,7 @@ function CreateGame({ backendURL }) {
                 <option>VICTORY</option>
                 <option>DEFEAT</option>
             </select>
+        <hr />
 
             <h3>Team B</h3>
 
@@ -101,6 +105,7 @@ function CreateGame({ backendURL }) {
 
             <br />
         </form>
+        <hr />
         <button onClick={confirmCreate}>Submit</button>
         <button onClick={() => navigate("/games")}>Cancel</button>
 

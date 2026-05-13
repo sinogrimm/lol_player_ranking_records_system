@@ -7,6 +7,7 @@ function Teams() {
             <h1>Teams</h1>
             <p>Displays the Team ID, Game ID, and Result for each Team.
             </p>
+            <hr />
             <table>
                 <thead>
                     <tr>
